@@ -13,7 +13,7 @@ sudo systemctl restart apache2
 sleep 5
 mkdir /etc/apache2/certificate
 cd /etc/apache2/certificate
-sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout apache.key -out apache-certificate.crt -subj "/C=BR/ST=PR/L=cwb/O=apache2/OU=server/CN='hostname -f'/emailAddress=devops@contabilizei.com.br"
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout apache.key -out apache-certificate.crt -subj "/C=BR/ST=PR/L=cwb/O=apache2/OU=server/CN='curl http://metadata.google.internal/computeMetadata/v1/instance/hostname -H "Metadata-Flavor: Google"'/emailAddress=devops@contabilizei.com.br"
 sleep 10
 sudo cat <<EOF >> /etc/apache2/sites-enabled/000-default.conf
 <VirtualHost *:443>
